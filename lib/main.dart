@@ -1,9 +1,7 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-
-import 'movies.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,6 +47,29 @@ class _MyHomePageState extends State<MyHomePage> {
     popularMovies.sort((b, a) => a['popularity'].compareTo(b['popularity']));
   }
 
+  Widget menu() {
+    return Container(
+      color: Color(0xFF3F5AA6),
+      child: TabBar(
+        labelColor: Colors.white,
+        unselectedLabelColor: Colors.white70,
+        indicatorSize: TabBarIndicatorSize.tab,
+        indicatorPadding: EdgeInsets.all(5.0),
+        indicatorColor: Colors.blue,
+        tabs: [
+          Tab(
+            text: "Latest",
+            icon: Icon(Icons.access_alarm_outlined),
+          ),
+          Tab(
+            text: "Popular",
+            icon: Icon(Icons.adjust_sharp),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     getMovies();
@@ -57,18 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            bottom: const TabBar(
-              tabs: [
-                Tab(
-                  text: 'Latest',
-                ),
-                Tab(
-                  text: 'Popular',
-                ),
-              ],
-            ),
-            title: Text(widget.title),
+            backgroundColor: Color(0xFF3F5AA6),
+            title: Text("Movies List"),
           ),
+          bottomNavigationBar: menu(),
           body: TabBarView(
             children: [
               Container(
@@ -81,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.15,
                               padding: EdgeInsets.only(left: 10),
-                              color: Colors.blue.shade200,
+                              color: Color.fromARGB(255, 94, 120, 191),
                               child: Row(
                                 children: [
                                   Container(
@@ -89,10 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.2,
                                     child: Text(
-                                      latestMovies[index]['original_title'],
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                        latestMovies[index]['original_title'],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.yellow.shade600,
+                                        )),
                                   ),
                                   Container(
                                     padding: EdgeInsets.all(0),
@@ -100,6 +114,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                         0.20,
                                     child: Text(
                                       latestMovies[index]['release_date'],
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -107,7 +124,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.2,
                                     child: Text(
-                                        '${latestMovies[index]['popularity'].toStringAsFixed(0)} ⭐'),
+                                      '${latestMovies[index]['popularity'].toStringAsFixed(0)} ⭐',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
                                   Container(
                                     padding: EdgeInsets.all(5),
@@ -137,7 +158,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.15,
                               padding: EdgeInsets.only(left: 10),
-                              color: Colors.blue.shade200,
+                              // color: Colors.blue.shade200,
+                              color: Color.fromARGB(255, 94, 120, 191),
                               child: Row(
                                 children: [
                                   Container(
@@ -147,7 +169,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Text(
                                       popularMovies[index]['original_title'],
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.yellow.shade600,
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -156,6 +180,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                         0.20,
                                     child: Text(
                                       popularMovies[index]['release_date'],
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                   Container(
@@ -163,7 +190,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.2,
                                     child: Text(
-                                        '${popularMovies[index]['popularity'].toStringAsFixed(0)} ⭐'),
+                                      '${popularMovies[index]['popularity'].toStringAsFixed(0)} ⭐',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
                                   Container(
                                     padding: EdgeInsets.all(5),
