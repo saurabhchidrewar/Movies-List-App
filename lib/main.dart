@@ -43,13 +43,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget menu() {
     return Container(
-      color: Color(0xFF3F5AA6),
+      color: Color.fromARGB(255, 6, 10, 89),
       child: TabBar(
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white70,
         indicatorSize: TabBarIndicatorSize.tab,
         indicatorPadding: EdgeInsets.all(5.0),
-        indicatorColor: Colors.blue,
+        indicatorColor: Color.fromARGB(255, 220, 201, 171),
         tabs: [
           Tab(
             text: "Latest",
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Color(0xFF3F5AA6),
+            backgroundColor: Color.fromARGB(255, 6, 10, 89),
             title: Text(
               "Movies List",
               style: TextStyle(
