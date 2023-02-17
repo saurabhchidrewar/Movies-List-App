@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Movie List',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Movie List'),
     );
@@ -79,7 +79,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Color(0xFF3F5AA6),
-            title: Text("Movies List"),
+            title: Text(
+              "Movies List",
+              style: TextStyle(
+                fontFamily: 'QuickSand',
+                letterSpacing: 6,
+                wordSpacing: 8,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           bottomNavigationBar: menu(),
           body: TabBarView(
@@ -105,17 +113,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                         latestMovies[index]['original_title'],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.yellow.shade600,
+                                          color: Colors.yellow.shade200,
+                                          fontFamily: 'QuickSand',
                                         )),
                                   ),
                                   Container(
-                                    padding: EdgeInsets.all(0),
                                     width: MediaQuery.of(context).size.width *
                                         0.20,
                                     child: Text(
                                       latestMovies[index]['release_date'],
                                       style: TextStyle(
                                         color: Colors.white,
+                                        fontFamily: 'QuickSand',
                                       ),
                                     ),
                                   ),
@@ -126,7 +135,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Text(
                                       '${latestMovies[index]['popularity'].toStringAsFixed(0)} ⭐',
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.red.shade100,
+                                        fontFamily: 'QuickSand',
                                       ),
                                     ),
                                   ),
@@ -170,7 +180,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       popularMovies[index]['original_title'],
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.yellow.shade600,
+                                        fontFamily: 'QuickSand',
+                                        color: Colors.yellow.shade200,
                                       ),
                                     ),
                                   ),
@@ -182,6 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       popularMovies[index]['release_date'],
                                       style: TextStyle(
                                         color: Colors.white,
+                                        fontFamily: 'QuickSand',
                                       ),
                                     ),
                                   ),
@@ -192,7 +204,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Text(
                                       '${popularMovies[index]['popularity'].toStringAsFixed(0)} ⭐',
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.red.shade100,
+                                        fontFamily: 'QuickSand',
                                       ),
                                     ),
                                   ),
@@ -221,3 +234,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+// hero
