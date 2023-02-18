@@ -25,42 +25,44 @@ class MovieDetails extends StatelessWidget {
       ),
       body: Material(
         type: MaterialType.transparency,
-        child: Container(
-          padding: EdgeInsets.all(MediaQuery.of(context).padding.top),
-          decoration: BoxDecoration(color: Color.fromARGB(255, 6, 10, 89)),
-          child: Hero(
-            tag: 'showdetails$movieId',
-            child: Column(
-              children: [
-                FittedBox(
-                  child: Text(
-                    movieList[movieId]['original_title'],
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.amber,
-                      fontSize: MediaQuery.of(context).size.height * 0.025,
-                      fontFamily: 'QuickSand',
+        child: Hero(
+          tag: 'showdetails$movieId',
+          child: Container(
+            padding: EdgeInsets.all(MediaQuery.of(context).padding.top),
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(color: Color.fromARGB(255, 6, 10, 89)),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  FittedBox(
+                    child: Text(
+                      movieList[movieId]['original_title'],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.amber,
+                        fontSize: MediaQuery.of(context).size.height * 0.025,
+                        fontFamily: 'QuickSand',
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.network(
-                    'https://image.tmdb.org/t/p/w500/${movieList[movieId]['poster_path']}',
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.network(
+                      'https://image.tmdb.org/t/p/w500/${movieList[movieId]['poster_path']}',
+                    ),
                   ),
-                ),
-                Text(
-                  movieList[movieId]['overview'],
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: MediaQuery.of(context).size.height * 0.0132,
-                    fontFamily: 'OpenSans',
+                  Text(
+                    movieList[movieId]['overview'],
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: MediaQuery.of(context).size.height * 0.0132,
+                      fontFamily: 'OpenSans',
+                    ),
                   ),
-                ),
-                Container(
-                  margin:
-                      EdgeInsets.all(MediaQuery.of(context).padding.top * 0.3),
-                  child: Row(
+                  Container(
+                    margin: EdgeInsets.all(
+                        MediaQuery.of(context).padding.top * 0.3),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
@@ -95,9 +97,11 @@ class MovieDetails extends StatelessWidget {
                             fontFamily: 'QuickSand',
                           ),
                         ),
-                      ]),
-                )
-              ],
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

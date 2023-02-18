@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:movieapp/widgets/moviedetails.dart';
 
 class showMovies extends StatelessWidget {
@@ -11,6 +12,8 @@ class showMovies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 2.0;
+
     if (category == 'Latest') {
       movieList.sort((b, a) => a['release_date'].compareTo(b['release_date']));
     } else {
