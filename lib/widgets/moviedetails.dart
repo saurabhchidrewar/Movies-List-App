@@ -35,13 +35,16 @@ class MovieDetails extends StatelessWidget {
               child: Column(
                 children: [
                   FittedBox(
-                    child: Text(
-                      movieList[movieId]['original_title'],
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.amber,
-                        fontSize: MediaQuery.of(context).size.height * 0.025,
-                        fontFamily: 'QuickSand',
+                    child: Material(
+                      color: Colors.transparent,
+                      child: Text(
+                        movieList[movieId]['original_title'],
+                        style: TextStyle(
+                          //fontWeight: FontWeight.bold,
+                          color: Colors.amber,
+                          fontSize: MediaQuery.of(context).size.height * 0.025,
+                          fontFamily: 'QuickSand',
+                        ),
                       ),
                     ),
                   ),
@@ -51,12 +54,15 @@ class MovieDetails extends StatelessWidget {
                       'https://image.tmdb.org/t/p/w500/${movieList[movieId]['poster_path']}',
                     ),
                   ),
-                  Text(
-                    movieList[movieId]['overview'],
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.height * 0.0132,
-                      fontFamily: 'OpenSans',
+                  Material(
+                    color: Colors.transparent,
+                    child: Text(
+                      movieList[movieId]['overview'],
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.height * 0.0132,
+                        fontFamily: 'OpenSans',
+                      ),
                     ),
                   ),
                   Container(
@@ -65,17 +71,21 @@ class MovieDetails extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text(
-                          movieList[movieId]['release_date'],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.amber,
-                            fontSize:
-                                MediaQuery.of(context).size.height * 0.013,
-                            fontFamily: 'QuickSand',
+                        Material(
+                          color: Colors.transparent,
+                          child: Text(
+                            movieList[movieId]['release_date'],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.amber,
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.013,
+                              fontFamily: 'QuickSand',
+                            ),
                           ),
                         ),
-                        Container(
+                        Material(
+                          color: Colors.transparent,
                           child: Text(
                             '${movieList[movieId]['vote_average'].toString()} ⭐',
                             style: TextStyle(
@@ -87,14 +97,17 @@ class MovieDetails extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Text(
-                          '${movieList[movieId]['vote_count'].toString()} Reviews',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.amber,
-                            fontSize:
-                                MediaQuery.of(context).size.height * 0.013,
-                            fontFamily: 'QuickSand',
+                        Material(
+                          color: Colors.transparent,
+                          child: Text(
+                            '${movieList[movieId]['vote_count'].toString()} Reviews',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.amber,
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.013,
+                              fontFamily: 'QuickSand',
+                            ),
                           ),
                         ),
                       ],

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:movieapp/widgets/material_text.dart';
 import 'package:movieapp/widgets/moviedetails.dart';
 
 class showMovies extends StatelessWidget {
@@ -12,6 +13,8 @@ class showMovies extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
+
     timeDilation = 2.0;
 
     if (category == 'Latest') {
@@ -20,88 +23,87 @@ class showMovies extends StatelessWidget {
       movieList.sort((b, a) => a['popularity'].compareTo(b['popularity']));
     }
 
-    return Container(
-      decoration: BoxDecoration(color: Color.fromARGB(255, 43, 48, 145)),
-      child: movieList.isNotEmpty
-          ? ListView.builder(
-              itemCount: movieList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  elevation: 5,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  MovieDetails(movieList, index)));
-                    },
-                    child: Hero(
-                      tag: 'showdetails$index',
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.15,
-                        color: Color.fromARGB(255, 94, 120, 191),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  movieList[index]['original_title'],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Color.fromARGB(255, 6, 10, 89),
-                                    fontSize: 15,
-                                    fontFamily: 'QuickSand',
+    return Material(
+      child: Container(
+        decoration: BoxDecoration(color: Color.fromARGB(255, 43, 48, 145)),
+        child: movieList.isNotEmpty
+            ? ListView.builder(
+                itemCount: movieList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    elevation: 5,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MovieDetails(movieList, index)));
+                      },
+                      child: Hero(
+                        tag: 'showdetails$index',
+                        child: Container(
+                          height: mediaQuery.size.height * 0.15,
+                          color: Color.fromARGB(255, 94, 120, 191),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  width: mediaQuery.size.width * 0.3,
+                                  child: MaterialText(
+                                    movieList,
+                                    index,
+                                    Colors.yellow.shade600,
+                                    'original_title',
                                   ),
                                 ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.20,
-                                child: Text(
-                                  movieList[index]['release_date'],
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'QuickSand',
+                                Container(
+                                  width: mediaQuery.size.width * 0.20,
+                                  child: MaterialText(
+                                    movieList,
+                                    index,
+                                    Color.fromARGB(255, 6, 10, 89),
+                                    'release_date',
                                   ),
                                 ),
-                              ),
-                              FittedBox(
-                                child: Container(
+                                Container(
                                   padding: EdgeInsets.all(10),
                                   width:
                                       MediaQuery.of(context).size.width * 0.17,
-                                  child: Text(
-                                    '${movieList[index]['popularity'].toStringAsFixed(0)} ⭐',
-                                    style: TextStyle(
-                                      color: Colors.red.shade100,
-                                      fontFamily: 'QuickSand',
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: Text(
+                                      '${movieList[index]['popularity'].toStringAsFixed(0)} ⭐',
+                                      style: TextStyle(
+                                        color: Colors.red.shade100,
+                                        fontFamily: 'QuickSand',
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Image.network(
-                                  'https://image.tmdb.org/t/p/w500/${movieList[index]['poster_path']}',
+                                SizedBox(
+                                  width: mediaQuery.size.width * 0.3,
+                                  child: Image.network(
+                                    'https://image.tmdb.org/t/p/w500/${movieList[index]['poster_path']}',
+                                  ),
                                 ),
-                              ),
-                            ]),
+                              ]),
+                        ),
                       ),
                     ),
+                  );
+                },
+              )
+            : const Center(
+                child: Text(
+                  'No items',
+                  style: TextStyle(
+                    color: Colors.white,
                   ),
-                );
-              },
-            )
-          : const Center(
-              child: Text(
-                'No items',
-                style: TextStyle(
-                  color: Colors.white,
                 ),
               ),
-            ),
+      ),
     );
   }
 }
